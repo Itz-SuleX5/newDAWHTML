@@ -1,0 +1,28 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: ${AUTH0_CLIENT_ID:LeECmGtmibebqZVG80hUoUUl7ZefIr7a}
+            client-secret: ${AUTH0_CLIENT_SECRET:pgRctA7QdN4fUe2nAQsK9h-1bmh8DA8qRToGFHXSZ7MVFDY33lbVR6J63Ku7Orxo}
+            scope:
+              - openid
+              - profile
+              - email
+            redirect-uri: "https://curly-halibut-pjrqgrjj4546h6jxw-8080.app.github.dev/login/oauth2/code/auth0"
+        provider:
+          auth0:
+            issuer-uri: ${AUTH0_ISSUER_URI:https://dev-6a8gx4jqe8ymcodi.us.auth0.com/}
+            user-name-attribute: sub
+
+server:
+  port: 8080
+  forward-headers-strategy: native
+  use-forward-headers: true
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    org.springframework.security: DEBUG

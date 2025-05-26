@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Spring Boot Backend
+  auth0-backend:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - AUTH0_CLIENT_ID=LeECmGtmibebqZVG80hUoUUl7ZefIr7a
+      - AUTH0_CLIENT_SECRET=pgRctA7QdN4fUe2nAQsK9h-1bmh8DA8qRToGFHXSZ7MVFDY33lbVR6J63Ku7Orxo
+      - AUTH0_ISSUER_URI=https://dev-6a8gx4jqe8ymcodi.us.auth0.com/
+    restart: unless-stopped
+    container_name: auth0-springboot-backend
+    networks:
+      - auth0-network
+
+  # React Frontend
+  auth0-frontend:
+    build: ./react-dashboard
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    container_name: auth0-react-frontend
+    networks:
+      - auth0-network
+    depends_on:
+      - auth0-backend
+
+networks:
+  auth0-network:
+    driver: bridge
