@@ -10,7 +10,7 @@ spring:
               - openid
               - profile
               - email
-            redirect-uri: "https://curly-halibut-pjrqgrjj4546h6jxw-8080.app.github.dev/login/oauth2/code/auth0"
+            redirect-uri: "https://obscure-waffle-pjrqgrjj4475265xr-8080.app.github.dev/login/oauth2/code/auth0"
         provider:
           auth0:
             issuer-uri: ${AUTH0_ISSUER_URI:https://dev-6a8gx4jqe8ymcodi.us.auth0.com/}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=846, initial-scale=1.0">
@@ -39,8 +39,8 @@
             <li class="nav-item"><a class="nav-link" href="#">Metas</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Cuentas</a></li>
         </ul>
-        <span class="me-3">Alexis</span>
-        <a href="#" class="btn btn-outline-secondary btn-sm">Cerrar Sesión</a>
+        <span class="me-3" th:text="${name}">Usuario</span>
+        <a href="/logout" class="btn btn-outline-secondary btn-sm">Cerrar Sesión</a>
     </div>
 </nav>
 <div class="container main-content">
