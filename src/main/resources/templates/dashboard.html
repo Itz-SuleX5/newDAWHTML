@@ -38,6 +38,9 @@
             <li class="nav-item"><a class="nav-link" href="#">Presupuestos</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Metas</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Cuentas</a></li>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" href="/admin">Panel Admin</a>
+            </li>
         </ul>
         <span class="me-3" th:text="${name}">Usuario</span>
         <a href="/logout" class="btn btn-outline-secondary btn-sm">Cerrar Sesión</a>

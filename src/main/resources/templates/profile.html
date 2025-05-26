@@ -61,9 +61,9 @@
                                         <div class="col-sm-8" th:text="${user.nickname}">nickname</div>
                                     </div>
                                     
-                                    <div class="row mb-3" th:if="${user.locale}">
+                                    <div class="row mb-3" th:if="${user.locale || user.attributes?.locale || user.getAttributes()?.get('locale')}">
                                         <div class="col-sm-4"><strong>Idioma:</strong></div>
-                                        <div class="col-sm-8" th:text="${user.locale}">es</div>
+                                        <div class="col-sm-8" th:text="${user.locale ?: (user.attributes?.locale ?: user.getAttributes()?.get('locale'))}">es</div>
                                     </div>
                                     
                                     <div class="row mb-3" th:if="${user.updated_at}">
