@@ -80,10 +80,10 @@ public class SecurityConfig {
             
             // Verificar roles desde Auth0
             @SuppressWarnings("unchecked")
-            List<String> roles = (List<String>) claims.getOrDefault("https://tu-app.com/roles", new ArrayList<>());
+            Map<String, Object> appMetadata = (Map<String, Object>) claims.getOrDefault("app_metadata", new HashMap<>());
             
             // Agregar rol de admin si está presente en los claims
-            if (roles.contains("admin")) {
+            if (appMetadata.containsKey("is_admin") && (Boolean) appMetadata.get("is_admin")) {
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
             }
             

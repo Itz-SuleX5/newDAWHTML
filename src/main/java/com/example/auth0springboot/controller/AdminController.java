@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.*;
 
@@ -29,10 +31,19 @@ public class AdminController {
     @GetMapping
     public String adminPanel(Model model) {
         try {
-            String token = getManagementToken();
-            List<Map<String, Object>> users = getUsers(token);
-            model.addAttribute("users", users);
-            return "admin/panel";
+            // Verificar si el usuario actual es admin
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth != null && auth.getAuthorities().stream()
+                    .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                
+                String token = getManagementToken();
+                List<Map<String, Object>> users = getUsers(token);
+                model.addAttribute("users", users);
+                return "admin/panel";
+            } else {
+                model.addAttribute("error", "No tienes permisos de administrador");
+                return "error";
+            }
         } catch (Exception e) {
             model.addAttribute("error", "Error al cargar los usuarios: " + e.getMessage());
             return "error";
