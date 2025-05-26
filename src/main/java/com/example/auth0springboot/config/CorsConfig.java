@@ -14,9 +14,8 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-        // Permitir orígenes configurados
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("https://obscure-waffle-pjrqgrjj4475265xr-3000.app.github.dev");
+        // Permitir todos los orígenes en desarrollo
+        config.addAllowedOriginPattern("*");
         
         // Permitir credenciales
         config.setAllowCredentials(true);

@@ -12,7 +12,7 @@ spring:
               - email
               - read:users
               - read:user_idp_tokens
-            redirect-uri: "https://obscure-waffle-pjrqgrjj4475265xr-8080.app.github.dev/login/oauth2/code/auth0"
+            redirect-uri: "{baseUrl}/login/oauth2/code/auth0"
         provider:
           auth0:
             issuer-uri: ${AUTH0_ISSUER_URI:https://dev-6a8gx4jqe8ymcodi.us.auth0.com/}
